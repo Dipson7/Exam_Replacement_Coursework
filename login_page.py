@@ -2,11 +2,15 @@ from tkinter import *
 import smtplib
 import random
 
+# main window for login page
 login = Tk()
 
 
+# window for signup page
 def signup_page():
     signup = Toplevel()
+
+    # variables to store user input
     firstname = StringVar()
     firstname.set('First Name')
     lastname = StringVar()
@@ -16,24 +20,26 @@ def signup_page():
     s_password = StringVar()
     s_password.set('Password')
 
+    # function that send an OTP to the user inputted email
     def sign_click():
-        s = smtplib.SMTP('smtp.gmail.com', 587)
+        s = smtplib.SMTP('smtp.gmail.com', 587)  # (host domain , port)
         # start TLS for security
         s.starttls()
         # Authentication
         s.login("theggserver@gmail.com", "@ppleWas01")
-        # message to be sent
-        a = random.randint(250000, 999999)
+        a = random.randint(250000, 999999)  # OTP Generator of 6 digit number
+        # Message sent to user
         message = f'Your OTP code is {a}.\n And your Password,First and last Name are\n First Name: {firstname.get()}\nLast Name: {lastname.get()}\nPassword: {s_password.get()} '
 
         # sending the mail
-
         try:
             s.sendmail("theggserver@gmail.com", email.get(), message)
-            s.quit()
+            s.quit()  # stops the protocol
+
             otp = StringVar()
             otp.set('123456')
 
+            # checks if opt user entered is correct
             def check_otp():
                 if otp.get() == str(a):
                     success = Label(signup, text='Successful').pack()
@@ -44,8 +50,10 @@ def signup_page():
             Otp_entry = Entry(signup, text=otp).pack()
             b_opt = Button(signup, text='Conform', command=check_otp).pack()
         except:
+            # if user input email is incorrect notifies the user
             s.quit()
             check_email = Label(signup, text='Wrong email, Please check your email address').pack()
+
 
     l_first_name = Label(signup, text='First Name').pack()
     e_first_name = Entry(signup, text=firstname).pack()
