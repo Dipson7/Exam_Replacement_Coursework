@@ -6,7 +6,7 @@ import random
 
 # main window for login page
 login = Tk()
-login.state('zoomed')  # opens the window in fullscreen mode
+login.geometry('1366x768')
 
 
 # window for signup page
@@ -79,13 +79,13 @@ username.set('Username')
 password = StringVar()
 password.set('Password')
 
-user = Label(login, text='Username', font=('Arial', 15)).place(x=726, y=500)
-user_ent = Entry(login, textvariable=username, font=('Arial', 20)).place(x=726, y=540, width=468, height=59)
+user = Label(login, text='Username', font=('Arial', 15)).place(x=405, y=366)
+user_ent = Entry(login, textvariable=username, font=('Arial', 20)).place(x=405, y=396, width=468, height=89)
 
-passw = Label(login, text='Password', font=('Arial', 15)).place(x=726, y=621)
-passw_ent = Entry(login, show="*", text=password, font=('Arial', 20)).place(x=726, y=659, width=468, height=59)
+passw = Label(login, text='Password', font=('Arial', 15)).place(x=405, y=505,)
+passw_ent = Entry(login, show="*", text=password, font=('Arial', 20)).place(x=405, y=535, width=468, height=89)
 
-b_login = Button(login, text='Login', ).place(x=772, y=780, width=145, height=57)
-b_signup = Button(login, text='Signup', command=signup_page).place(x=1004, y=780, width=145, height=57)
+b_login = Button(login, text='Login', ).place(x=451, y=656, width=145, height=57)
+b_signup = Button(login, text='Signup', command=signup_page).place(x=683, y=656, width=145, height=57)
 
 login.mainloop()
