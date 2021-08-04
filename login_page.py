@@ -12,6 +12,8 @@ f = PhotoImage(file='Images/Frame.png')
 img_frame = Label(login, image=f, bg='#2B958E')
 img_frame.place(x=330, y=50)
 
+#Funsons
+
 
 # window for signup page
 def signup_page():
