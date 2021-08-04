@@ -2,6 +2,8 @@ from tkinter import *
 import smtplib
 import random
 
+# merge
+
 # main window for login page
 login = Tk()
 login.state('zoomed')  # opens the window in fullscreen mode
