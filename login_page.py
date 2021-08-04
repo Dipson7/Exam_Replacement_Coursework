@@ -4,11 +4,13 @@ import random
 
 # main window for login page
 login = Tk()
+login.state('zoomed')  # opens the window in fullscreen mode
 
 
 # window for signup page
 def signup_page():
     signup = Toplevel()
+    signup.state('zoomed')
 
     # variables to store user input
     firstname = StringVar()
@@ -54,7 +56,6 @@ def signup_page():
             s.quit()
             check_email = Label(signup, text='Wrong email, Please check your email address').pack()
 
-
     l_first_name = Label(signup, text='First Name').pack()
     e_first_name = Entry(signup, text=firstname).pack()
 
@@ -76,19 +77,13 @@ username.set('Username')
 password = StringVar()
 password.set('Password')
 
-user = Label(login, text='Username').pack()
-user_ent = Entry(login, textvariable=username).pack()
+user = Label(login, text='Username', font=('Arial', 15)).place(x=726, y=500)
+user_ent = Entry(login, textvariable=username, font=('Arial', 20)).place(x=726, y=540, width=468, height=59)
 
-passw = Label(login, text='Password').pack()
-passw_ent = Entry(login, show="*", text=password).pack()
+passw = Label(login, text='Password', font=('Arial', 15)).place(x=726, y=621)
+passw_ent = Entry(login, show="*", text=password, font=('Arial', 20)).place(x=726, y=659, width=468, height=59)
 
-
-def show():
-    passw2 = Label(login, text=password.get()).pack()
-    passw3 = Label(login, text=username.get()).pack()
-
-
-b_login = Button(login, text='Login', command=show).pack()
-b_signup = Button(login, text='Signup', command=signup_page).pack()
+b_login = Button(login, text='Login', ).place(x=772, y=780, width=145, height=57)
+b_signup = Button(login, text='Signup', command=signup_page).place(x=1004, y=780, width=145, height=57)
 
 login.mainloop()
