@@ -1,18 +1,17 @@
 from tkinter import *
+import tkinter
 
-def changed():
-    size = label.grid_info().get("row") #getting current row
-    if size == 0:size = 1
-    elif size == 1:size = 0
-    label.grid(row=size,column=0)
-root = Tk()
-root.config(bg="pink")
-frame = Frame(root, bg="sky blue")
-frame.pack()
+top = tkinter.Tk()
 
-label = Label(frame,text="Hello")
-label.grid(row=0,column=0)
-b = Button(frame, text='Press me!', command=changed)
-b.grid(row=0, column=1)
+B1 = tkinter.Button(top, text="FLAT", relief=FLAT)
+B2 = tkinter.Button(top, text="RAISED", relief=RAISED)
+B3 = tkinter.Button(top, text="SUNKEN", relief=SUNKEN)
+B4 = tkinter.Button(top, text="GROOVE", relief=GROOVE)
+B5 = tkinter.Button(top, text="RIDGE", relief=RIDGE)
 
-root.mainloop()
+B1.pack()
+B2.pack()
+B3.pack()
+B4.pack()
+B5.pack()
+top.mainloop()

@@ -7,6 +7,10 @@ import random
 # main window for login page
 login = Tk()
 login.geometry('1366x768')
+login.configure(bg='#2B958E')
+f = PhotoImage(file='Images/Frame.png')
+img_frame = Label(login, image=f, bg='#2B958E')
+img_frame.place(x=330, y=50)
 
 
 # window for signup page
@@ -52,7 +56,7 @@ def signup_page():
 
             l_check_otp = Label(signup, text='Enter the OTP').pack()
             Otp_entry = Entry(signup, text=otp).pack()
-            b_opt = Button(signup, text='Conform', command=check_otp).pack()
+            b_opt = Button(signup, text='Confirm', command=check_otp).pack()
         except:
             # if user input email is incorrect notifies the user
             s.quit()
@@ -79,13 +83,64 @@ username.set('Username')
 password = StringVar()
 password.set('Password')
 
-user = Label(login, text='Username', font=('Arial', 15)).place(x=405, y=366)
-user_ent = Entry(login, textvariable=username, font=('Arial', 20)).place(x=405, y=396, width=468, height=89)
+user = Label(login,
+             text='Username',
+             font=('Arial', 20),
+             bg='#2FB2AB'
+             ).place(x=440, y=206)
 
-passw = Label(login, text='Password', font=('Arial', 15)).place(x=405, y=505,)
-passw_ent = Entry(login, show="*", text=password, font=('Arial', 20)).place(x=405, y=535, width=468, height=89)
+userbox = PhotoImage(file='Images/Username Box.png')
+user_bg = Label(login,
+                image=userbox,
+                bg='#2FB2AB',
+                bd=0).place(x=406, y=247, )
+user_ent = Entry(login,
+                 text=username,
+                 font=('Arial', 20),
+                 bd=0,
+                 bg='#C4C4C4',
+                 ).place(x=480, y=275, )
 
-b_login = Button(login, text='Login', ).place(x=451, y=656, width=145, height=57)
-b_signup = Button(login, text='Signup', command=signup_page).place(x=683, y=656, width=145, height=57)
+passw = Label(login,
+              text='Password',
+              font=('Arial', 20),
+              bg='#2FB2AB'
+              ).place(x=440, y=363)
+
+passbox = PhotoImage(file='Images/Password Box.png')
+passw_bg = Label(login,
+                 image=passbox,
+                 bg='#2FB2AB',
+                 ).place(x=406, y=406, )
+pass_ent = Entry(login,
+                 show='*',
+                 text=password,
+                 font=('Arial', 20),
+                 bd=0,
+                 bg='#C4C4C4',
+
+                 ).place(x=482, y=440, )
+
+b_login = Button(login,
+                 text='Login',
+                 font=('Arial', 15),
+                 bg='#DED242'
+                 ).place(x=567, y=539, width=145, height=57)
+info_sinup = Label(login,
+                   text='Dont have an account?',
+                   font=('Arial', 15),
+                   bg='#2FB2AB').place(x=495, y=627)
+b_signup = Button(
+    login,
+    text='Signup',
+    font=('Arial', 15),
+    bg='#2FB2AB',
+    bd=0,
+    activeforeground='black',
+    activebackground='#2FB2AB',
+    command=signup_page,
+    relief=FLAT,
+)
+b_signup.place(x=697, y=622, width=75, height=39)
 
 login.mainloop()
