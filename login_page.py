@@ -1,12 +1,12 @@
 from tkinter import *
 import smtplib
 import random
-
-# merge
+import requests
 
 # main window for login page
 login = Tk()
 login.geometry('1366x768')
+login.resizable(False, False)  # stop the window from resizing
 login.configure(bg='#2B958E')
 f = PhotoImage(file='Images/Frame.png')
 img_frame = Label(login, image=f, bg='#2B958E')
@@ -16,7 +16,8 @@ img_frame.place(x=330, y=50)
 # window for signup page
 def signup_page():
     signup = Toplevel()
-    signup.state('zoomed')
+    signup.geometry('1366x768')
+    signup.resizable(False, False)  # stop the window from resizing
 
     # variables to store user input
     firstname = StringVar()
@@ -41,22 +42,37 @@ def signup_page():
 
         # sending the mail
         try:
-            s.sendmail("theggserver@gmail.com", email.get(), message)
-            s.quit()  # stops the protocol
+            email_address = email.get()
+            response = requests.get(
+                "https://isitarealemail.com/api/email/validate",
+                # Checks email is valid or invalid using isitrealemail api
+                params={'email': email_address})
 
-            otp = StringVar()
-            otp.set('123456')
+            status = response.json()['status']  # returns the status of email, either valid or invalid
 
-            # checks if opt user entered is correct
-            def check_otp():
-                if otp.get() == str(a):
-                    success = Label(signup, text='Successful').pack()
-                else:
-                    Label(signup, text='Unsuccessful').pack()
+            if status == "valid":
+                s.sendmail("theggserver@gmail.com", email.get(), message)
+                s.quit()  # stops the protocol
 
-            l_check_otp = Label(signup, text='Enter the OTP').pack()
-            Otp_entry = Entry(signup, text=otp).pack()
-            b_opt = Button(signup, text='Confirm', command=check_otp).pack()
+                otp = StringVar()
+                otp.set('123456')
+
+                # checks if opt user entered is correct
+                def check_otp():
+                    if otp.get() == str(a):
+                        success = Label(signup, text='Successful').pack()
+                    else:
+                        Label(signup, text='Unsuccessful').pack()
+
+                l_check_otp = Label(signup, text='Enter the OTP').pack()
+                Otp_entry = Entry(signup, text=otp).pack()
+                b_opt = Button(signup, text='Confirm', command=check_otp).pack()
+            elif status == "invalid":
+                s.quit()
+                check_email = Label(signup, text='Wrong email, Please check your email address').pack()
+            else:
+                s.quit()
+                check_email = Label(signup, text='Email is unknown').pack()
         except:
             # if user input email is incorrect notifies the user
             s.quit()
@@ -78,11 +94,13 @@ def signup_page():
     signup.mainloop()
 
 
+# String Variables to store user inputs
 username = StringVar()
 username.set('Username')
 password = StringVar()
 password.set('Password')
 
+# Button,Label and Placements
 user = Label(login,
              text='Username',
              font=('Arial', 20),
@@ -111,15 +129,17 @@ passbox = PhotoImage(file='Images/Password Box.png')
 passw_bg = Label(login,
                  image=passbox,
                  bg='#2FB2AB',
-                 ).place(x=406, y=406, )
+                 )
+passw_bg.place(x=406, y=406, )
+
 pass_ent = Entry(login,
                  show='*',
                  text=password,
                  font=('Arial', 20),
                  bd=0,
                  bg='#C4C4C4',
-
-                 ).place(x=482, y=440, )
+                 )
+pass_ent.place(x=482, y=440, )
 
 b_login = Button(login,
                  text='Login',
@@ -128,23 +148,25 @@ b_login = Button(login,
                  relief=RAISED,
                  activeforeground='black',
                  activebackground='#DED242',
+                 )
+b_login.place(x=567, y=539, width=145, height=57)
 
-                 ).place(x=567, y=539, width=145, height=57)
 info_sinup = Label(login,
                    text='Dont have an account?',
                    font=('Arial', 15),
-                   bg='#2FB2AB').place(x=495, y=627)
-b_signup = Button(
-    login,
-    text='Signup',
-    font=('Arial', 15),
-    bg='#2FB2AB',
-    bd=0,
-    activeforeground='black',
-    activebackground='#2FB2AB',
-    command=signup_page,
-    relief=FLAT,
-)
+                   bg='#2FB2AB')
+info_sinup.place(x=495, y=627)
+
+b_signup = Button(login,
+                  text='Signup',
+                  font=('Arial', 15, UNDERLINE),
+                  bg='#2FB2AB',
+                  bd=0,
+                  activeforeground='grey',
+                  activebackground='#2FB2AB',
+                  command=signup_page,
+                  relief=FLAT,
+                  )
 b_signup.place(x=697, y=622, width=75, height=39)
 
 login.mainloop()
