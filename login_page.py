@@ -123,8 +123,12 @@ pass_ent = Entry(login,
 
 b_login = Button(login,
                  text='Login',
-                 font=('Arial', 15),
-                 bg='#DED242'
+                 font=('Arial', 20),
+                 bg='#DED242',
+                 relief=RAISED,
+                 activeforeground='black',
+                 activebackground='#DED242',
+
                  ).place(x=567, y=539, width=145, height=57)
 info_sinup = Label(login,
                    text='Dont have an account?',
