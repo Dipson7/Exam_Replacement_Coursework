@@ -2,26 +2,35 @@ import turtle
 from tkinter import *
 
 start = Tk()
+
+# creating the start window
 start.geometry("1280x720")
 start.title("Tennis")
 
+# defining functions to buttons in start window
 def login():
 
     global bgimg, startgame, exit
+
+    # customizing the background of start window
     bgimg = PhotoImage(file='Images/tennisball 2.png')
     Label(start, image=bgimg).place(x=0, y=0)
 
+    # customizing start game button
     startgame = PhotoImage(file='Images/START GAME.png')
     start_button = Button(start, image=startgame, bg="#AFC13C", bd=0, activebackground="#AFC13C", command=startbtn)
     start_button.place(x=66, y=532)
 
+    # customizing exit game button
     exit = PhotoImage(file='Images/EXIT.png')
     exit_button = Button(start, image=exit, bg="#AFC13C", bd=0, activebackground="#AFC13C", command=exitbtn)
     exit_button.place(x=66, y=605)
 
+# defining functions to exit game button
 def exitbtn():
     start.quit()
 
+# defining functions to start game button
 def startbtn():
 
         # creating a window

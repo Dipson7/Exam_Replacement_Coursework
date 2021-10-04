@@ -1,25 +1,25 @@
-# Tennis with Turtle
+# Tennis2D
 
 <img src="https://imgur.com/nKTSwy1.png"><br>
 
 ## Introduction
 <p>
-This is a simple multiplayer tennis game made using turtle in pycharm.. 
+This is a simple multiplayer tennis game made using turtle in pycharm.
 </p>
 
-## Features 
-<p>
--A various buttons have been assigned to input desired numbers and mathematical symbols.<br> 
--It can perform simple mathematical operations, such as addition, subtraction, multiplication and division.<br>
--We can also perform modulus division and exponent.<br> 
--Consists of reset button to clear all the inputs/outputs in the entry box. <br>
--Consists of equals to button to display result. <br>
--The output in entry box can be used again to perform further calculations. <br>
+## Aims and Features 
+<p> 
+-This is a multiplayer game, so two players can enjoy the game at a same time.<br>
+-Players are opt to either start or exit the game.<br>
+-Both players are assigned with two different paddles situated at opposite sides of the tennis board.<br> 
+-'Player 1' uses 'W' and 'S' keys to move the paddle and 'Player 2' uses arrow keys 'Up' and 'Down'. <br>
+-Aim of both the players is to hit the ball with respective paddles. <br>
+-If a player misses the ball, then the opposing player is awarded a point. <br>
 </p>
 
 ## Conclusion <br>
 <p>
-This calculator can be further improved in both functioning and designing. More mathematical symbols can be added to perform more operations. Variables button can be added to perform algebraic calculations. More functions can be added to perform log arithmetic, trigonometric and many more mathematical operations.  <br>
+This is a fun game to play with friends and families. Furthermore features can be added in the game to make it more competitive and realistic. Images and quality of the in-game objects can be improved to make it more eye catching.  <br>
 </p>
 
 
